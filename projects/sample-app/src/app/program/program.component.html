@@ -1,0 +1,51 @@
+<mat-toolbar>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/program">Programs</button>
+    <button mat-raised-button (click)="loadData()">Program {{programAddress}}</button>
+  </mat-toolbar>
+  <app-property-view [ccuObject]="program"></app-property-view>
+  
+  <div class="container" @fadeIn>
+    <mat-card>
+      <mat-card-title>Program Status</mat-card-title>
+      <mat-list>
+        <mat-list-item *ngIf="programStatus" @fadeIn>
+          <div mat-line class="title">API</div>
+          <div mat-line class="subtitle">{{programStatus.timestamp | date:'long'}}</div>
+          <div class="flex"></div>
+          <mat-spinner [diameter]="20" *ngIf="isLoadingValue"></mat-spinner>
+          <button color="accent" mat-icon-button (click)="startViaApi(false)">
+            <mat-icon>play_circle_filled</mat-icon>
+          </button>
+          <button color="accent" mat-icon-button matTooltip="start via simple request" (click)="startViaApi(true)">
+            <mat-icon>play_circle_outline</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Refresh" (click)="loadValue()" [disabled]="isLoadingValue">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <mat-chip-list aria-label="Value" [disabled]="isLoadingValue">
+            <mat-chip color="primary" selected>{{programStatus.value}}</mat-chip>
+          </mat-chip-list>
+        </mat-list-item>
+        <mat-list-item *ngIf="programStatus$ | async as mqttValue" @fadeIn>
+          <div mat-line class="title">MQTT</div>
+          <div mat-line class="subtitle">{{mqttValue.timestamp | date:'long'}}</div>
+          <div class="flex"></div>
+          <button color="accent" mat-icon-button (click)="startViaMqtt()">
+            <mat-icon>play_circle_filled</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Refresh" matTooltip="Trigger MQTT Sync"
+            (click)="ccuMqtt.startProgramStatusSync(programReference)" [disabled]="isLoadingValue">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <mat-chip-list aria-label="Value">
+            <mat-chip color="primary" selected>{{mqttValue.value}}</mat-chip>
+          </mat-chip-list>
+        </mat-list-item>
+      </mat-list>
+      <mat-card-actions>
+        <button mat-button (click)="ccuMqtt.startProgramStatusSync(programReference)" *ngIf="!(programStatus$ | async)"
+          @fadeIn>Trigger MQTT Sync</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

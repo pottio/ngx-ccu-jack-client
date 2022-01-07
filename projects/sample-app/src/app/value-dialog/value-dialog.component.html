@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Change Value</h1>
+<div mat-dialog-content *ngIf="data.meta">
+  <div class="center">
+    <mat-button-toggle-group *ngIf="isBoolean()" [(ngModel)]="newValue">
+      <mat-button-toggle [value]="false">False</mat-button-toggle>
+      <mat-button-toggle [value]="true">True</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <mat-form-field appearance="fill" *ngIf="isNumber()">
+    <mat-label>new value</mat-label>
+    <input matInput [(ngModel)]="newValue" type="number" min="{{data?.meta?.minimum}}" max="{{data?.meta?.maximum}}"
+      [step]="data?.meta?.unit === '100%' ? 0.01 : 0.1">
+  </mat-form-field>
+
+  <div class="center">
+    <mat-button-toggle-group *ngIf="isEnum()" [(ngModel)]="newValue">
+      <mat-button-toggle *ngFor="let v of getValueList(); let i = index" [value]="i">{{getValueList()[i]}} ({{i}})
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <mat-form-field appearance="fill" *ngIf="isString()">
+    <mat-label>new value</mat-label>
+    <input matInput [(ngModel)]="newValue" type="text">
+  </mat-form-field>
+
+  <div *ngIf="isUnknown()">{{data.value.value | json}}</div>
+  <mat-form-field appearance="fill" *ngIf="isUnknown()">
+    <mat-label>new value</mat-label>
+    <input matInput [(ngModel)]="newValue">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="{value: newValue, mode: 'api'}"
+    *ngIf="data.value.source === 'api'">Set [API]</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="{value: newValue, mode: 'apiSimple'}"
+    *ngIf="data.value.source === 'api'">Set [API simple]</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="{value: newValue, mode: 'mqtt'}"
+    *ngIf="data.value.source === 'mqtt'">Set [MQTT]</button>
+</div>

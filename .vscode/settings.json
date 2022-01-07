@@ -1,0 +1,38 @@
+{
+    "cSpell.words": [
+        "briebug",
+        "devkit",
+        "mockito",
+        "packagr",
+        "paramsets",
+        "sysvar",
+        "SYSVARS",
+        "veap"
+    ],
+    "editor.formatOnSave": true,
+    "eslint.workingDirectories": [
+          "lib"
+          
+      ],
+      "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "editor.formatOnSave": true
+      },
+      "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "editor.formatOnSave": true
+      },
+      "[json]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "editor.formatOnSave": true
+      }
+}

@@ -1,0 +1,5 @@
+<mat-toolbar>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-raised-button (click)="loadData()">System Variables</button>
+</mat-toolbar>
+<app-ref-table title="System Variables" [data]="references" [displayedColumns]="['title', 'sysVarAddress']"></app-ref-table>

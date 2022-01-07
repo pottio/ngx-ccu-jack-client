@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "johnpapa.angular2",
+    "1tontech.angular-material",
+    "formulahendry.auto-rename-tag",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "sonarsource.sonarlint-vscode",
+    "visualstudioexptteam.vscodeintellicode",
+    "vscode-icons-team.vscode-icons",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}

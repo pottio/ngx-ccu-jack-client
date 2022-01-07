@@ -1,0 +1,70 @@
+<div class="container" @fadeIn>
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>{{title}}</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" matSort matSortActive="title" matSortDirection="asc"
+          matSortDisableClear class="list">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title">
+              Title
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="deviceAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by device address">
+              Device Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.deviceAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="channelAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by channel address">
+              Channel Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.channelAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="dataPointAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by data point address">
+              Data Point Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataPointAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="roomAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by room address">
+              Room Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.roomAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="functionAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by function address">
+              Function Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.functionAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="programAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by program address">
+              Program Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.programAddress}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="sysVarAddress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by system variable address">
+              System Variable Address
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.sysVarAddress}} </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="getRouterLink(row)"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
