@@ -1,4 +1,3 @@
-import { CcuJackClientConfiguration, NgxCcuJackClientModule } from 'ngx-ccu-jack-client';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +13,7 @@ import { FunctionsComponent } from './functions/functions.component';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
+import { NgxCcuJackClientModule } from 'ngx-ccu-jack-client';
 import { ProgramComponent } from './program/program.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { PropertyViewComponent } from './property-view/property-view.component';
@@ -23,14 +23,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { SysVarComponent } from './sysvar/sysvar.component';
 import { SysVarsComponent } from './sysvars/sysvars.component';
 import { ValueDialogComponent } from './value-dialog/value-dialog.component';
-
-const ccuJackClientConfiguration: CcuJackClientConfiguration = {
-  connectMqttOnInit: true,
-  hostnameOrIp: 'your-hostname-or-ip',
-  port: 2122,
-  secureConnection: true,
-  auth: { user: 'your-user', password: 'your-password' }
-};
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -59,7 +52,7 @@ const ccuJackClientConfiguration: CcuJackClientConfiguration = {
     CommonModule,
     FormsModule,
     MaterialModule,
-    NgxCcuJackClientModule.forRoot(ccuJackClientConfiguration)
+    NgxCcuJackClientModule.forRoot(environment.ccuJackClientConfiguration)
   ],
   providers: [],
   bootstrap: [AppComponent]

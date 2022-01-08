@@ -7,8 +7,8 @@
     "watch": "ng build ngx-ccu-jack-client --watch --configuration development",
     "test": "ng test ngx-ccu-jack-client --coverage",
     "lint": "ng lint ngx-ccu-jack-client",
-    "serve": "ng serve sample-app",
-    "build-sample": "ng build sample-app"
+    "serve": "npm run watch && ng serve sample-app",
+    "build-sample": "npm run build && ng build sample-app"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +22,6 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
-    "ngx-ccu-jack-client": "file:dist/ngx-ccu-jack-client",
     "ngx-mqtt": "^9.0.5",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
