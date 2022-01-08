@@ -8,8 +8,8 @@
     "watch": "ng build ngx-ccu-jack-client --watch --configuration development",
     "test": "ng test ngx-ccu-jack-client --coverage",
     "lint": "ng lint ngx-ccu-jack-client",
-    "serve": "npm run watch && ng serve sample-app",
-    "build-sample": "npm run build && ng build sample-app"
+    "serve": "ng serve sample-app",
+    "build-sample": "ng build sample-app"
   },
   "husky": {
     "hooks": {
