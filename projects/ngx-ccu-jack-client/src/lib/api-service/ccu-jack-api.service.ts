@@ -485,12 +485,12 @@ export class CcuJackApiService {
    * @returns a couple of detailed vendor information like configuration, diagnostics and http statistics
    */
   public getVendorInformationDetails(): Observable<CcuVendorInformationDetails> {
-    const configuration = this.httpClient.get<unknown>(`/~vendor/config/~pv?format=simple`);
-    const diagnostics = this.httpClient.get<unknown>(`/~vendor/diagnostics/~pv?format=simple`);
-    const httpErrorResponses = this.httpClient.get<unknown>(`/~vendor/statistics/errorResponses/~pv?format=simple`);
-    const httpRequestBytes = this.httpClient.get<unknown>(`/~vendor/statistics/requestBytes/~pv?format=simple`);
-    const httpRequests = this.httpClient.get<unknown>(`/~vendor/statistics/requests/~pv?format=simple`);
-    const httpResponseBytes = this.httpClient.get<unknown>(`/~vendor/statistics/responseBytes/~pv?format=simple`);
+    const configuration = this.httpClient.get<unknown>(`/~vendor/config/~pv`);
+    const diagnostics = this.httpClient.get<unknown>(`/~vendor/diagnostics/~pv`);
+    const httpErrorResponses = this.httpClient.get<unknown>(`/~vendor/statistics/errorResponses/~pv`);
+    const httpRequestBytes = this.httpClient.get<unknown>(`/~vendor/statistics/requestBytes/~pv`);
+    const httpRequests = this.httpClient.get<unknown>(`/~vendor/statistics/requests/~pv`);
+    const httpResponseBytes = this.httpClient.get<unknown>(`/~vendor/statistics/responseBytes/~pv`);
 
     return forkJoin([
       configuration,

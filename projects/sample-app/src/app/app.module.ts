@@ -23,6 +23,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { SysVarComponent } from './sysvar/sysvar.component';
 import { SysVarsComponent } from './sysvars/sysvars.component';
 import { ValueDialogComponent } from './value-dialog/value-dialog.component';
+import { VendorComponent } from './vendor/vendor.component';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -43,7 +44,8 @@ import { environment } from '../environments/environment';
     RoomsComponent,
     SysVarComponent,
     SysVarsComponent,
-    ValueDialogComponent
+    ValueDialogComponent,
+    VendorComponent
   ],
   imports: [
     AppRoutingModule,

@@ -148,7 +148,7 @@ export interface CcuSysVar extends CcuBase {
   valueList?: string[];
 }
 
-export interface CcuVendorInformation {
+export interface CcuVendorInformation extends AdditionalPropertiesSupport {
   description: string;
   identifier: string;
   serverDescription: string;
@@ -159,7 +159,7 @@ export interface CcuVendorInformation {
   vendorName: string;
 }
 
-export interface CcuVendorInformationDetails {
+export interface CcuVendorInformationDetails extends AdditionalPropertiesSupport {
   config: unknown;
   diagnostics: unknown;
   statistics: {

@@ -13,6 +13,7 @@ import { RoomComponent } from './room/room.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { SysVarComponent } from './sysvar/sysvar.component';
 import { SysVarsComponent } from './sysvars/sysvars.component';
+import { VendorComponent } from './vendor/vendor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'program', component: ProgramsComponent },
   { path: 'program/:programAddress', component: ProgramComponent },
   { path: 'sysvar', component: SysVarsComponent },
-  { path: 'sysvar/:sysVarAddress', component: SysVarComponent }
+  { path: 'sysvar/:sysVarAddress', component: SysVarComponent },
+  { path: 'vendor', component: VendorComponent }
 ];
 
 @NgModule({

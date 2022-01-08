@@ -5,7 +5,9 @@ import {
   CcuFunction,
   CcuProgram,
   CcuRoom,
-  CcuSysVar
+  CcuSysVar,
+  CcuVendorInformation,
+  CcuVendorInformationDetails
 } from 'ngx-ccu-jack-client';
 import { Component, Input } from '@angular/core';
 import { fadeIn } from '../animations';
@@ -23,7 +25,9 @@ export class PropertyViewComponent {
     | CcuRoom
     | CcuFunction
     | CcuProgram
-    | CcuSysVar;
+    | CcuSysVar
+    | CcuVendorInformation
+    | CcuVendorInformationDetails;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}

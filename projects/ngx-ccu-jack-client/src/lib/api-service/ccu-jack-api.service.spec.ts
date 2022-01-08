@@ -1202,31 +1202,27 @@ describe('CcuJackApiServiceService', () => {
           expect(resp).toEqual(mockVendorInformationDetails);
         });
 
-        const requestVendorConfig = httpMock.expectOne('https://hostname:2122/~vendor/config/~pv?format=simple');
+        const requestVendorConfig = httpMock.expectOne('https://hostname:2122/~vendor/config/~pv');
         requestVendorConfig.flush('vendor_config_result');
 
-        const requestVendorDiagnostics = httpMock.expectOne(
-          'https://hostname:2122/~vendor/diagnostics/~pv?format=simple'
-        );
+        const requestVendorDiagnostics = httpMock.expectOne('https://hostname:2122/~vendor/diagnostics/~pv');
         requestVendorDiagnostics.flush('vendor_diagnostics');
 
         const requestVendorStatsErrorResponses = httpMock.expectOne(
-          'https://hostname:2122/~vendor/statistics/errorResponses/~pv?format=simple'
+          'https://hostname:2122/~vendor/statistics/errorResponses/~pv'
         );
         requestVendorStatsErrorResponses.flush(0);
 
         const requestVendorStatsRequestBytes = httpMock.expectOne(
-          'https://hostname:2122/~vendor/statistics/requestBytes/~pv?format=simple'
+          'https://hostname:2122/~vendor/statistics/requestBytes/~pv'
         );
         requestVendorStatsRequestBytes.flush(1);
 
-        const requestVendorStatsRequests = httpMock.expectOne(
-          'https://hostname:2122/~vendor/statistics/requests/~pv?format=simple'
-        );
+        const requestVendorStatsRequests = httpMock.expectOne('https://hostname:2122/~vendor/statistics/requests/~pv');
         requestVendorStatsRequests.flush(2);
 
         const requestVendorStatsResponseBytes = httpMock.expectOne(
-          'https://hostname:2122/~vendor/statistics/responseBytes/~pv?format=simple'
+          'https://hostname:2122/~vendor/statistics/responseBytes/~pv'
         );
         requestVendorStatsResponseBytes.flush(3);
       });
