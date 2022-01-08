@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prepare-dev": "npm i && npx husky install",
     "build": "ng build ngx-ccu-jack-client",
     "watch": "ng build ngx-ccu-jack-client --watch --configuration development",
     "test": "ng test ngx-ccu-jack-client --coverage",
