@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "prepare-dev": "npm i && npx husky install",
+    "generate-docs": "npx ts-node ./generate-docs/main.ts",
     "build": "ng build ngx-ccu-jack-client",
     "watch": "ng build ngx-ccu-jack-client --watch --configuration development",
     "test": "ng test ngx-ccu-jack-client --coverage",
