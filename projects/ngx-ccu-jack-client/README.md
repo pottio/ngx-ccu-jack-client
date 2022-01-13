@@ -91,10 +91,12 @@ export class AppComponent {
 
 The `CcuJackApiService` is used to access the rest interface of [CCU-Jack](https://github.com/mdzio/ccu-jack). Master data of devices, rooms, functions, system variables and programs can be requested via this way. It is also possible to start a program and access and set the value of each data point. However, the `CcuJackMqttService` should be used to display the values of data points, as the values are immediately updated via this way if they are changed in the CCU.
 
-ggf. Bild / UML Diagramm
+[See detailed CcuJackApiService documentation](documentation-ccu-jack-api.md)
 
 ### MQTT
 The `CcuJackMqttService` offers the possibility of a live connection of values of data points. In addition to that, values can be set and programs started.
+
+[See detailed CcuJackMqttService documentation](documentation-ccu-jack-mqtt.md)
 
 ## Troubleshooting
 

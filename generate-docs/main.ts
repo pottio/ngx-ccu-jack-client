@@ -96,12 +96,46 @@ const getMethodDocumentations = async (filePath: string): Promise<MethodDocument
   return methodDocs;
 };
 
+const generateMarkdownFile = (docs: MethodDocumentation[], pageTitle: string): string => {
+  let result = `# ${pageTitle}\n\n`;
+  docs.forEach((doc) => {
+    result += `## ${doc.head}\n${doc.description}\n\n`;
+    if (doc.remarks) {
+      result += `*${doc.remarks}*\n`;
+    }
+    if (doc.typeParam) {
+      result += `- **Type Parameter:** ${doc.typeParam}\n`;
+    }
+    if (doc.params.length > 0) {
+      result += `- **Parameters:**\n`;
+      doc.params.forEach((param) => {
+        result += `  - **${param.name}:** ${param.description}\n`;
+      });
+    }
+    if (doc.returns) {
+      result += `- **Returns:** ${doc.returns}\n`;
+    }
+    result += '\n';
+  });
+  return result;
+};
+
+const writeFile = async (fileContent: string, filePath: string): Promise<void> => {
+  return fsPromises.writeFile(filePath, fileContent);
+};
+
 const main = async (): Promise<void> => {
-  const methodDocs = await getMethodDocumentations(
+  const methodDocsApi = await getMethodDocumentations(
     './projects/ngx-ccu-jack-client/src/lib/api-service/ccu-jack-api.service.ts'
   );
-  console.log(JSON.stringify(methodDocs));
-  console.log('--------------------------------------------------------------------');
+  const markdownFileContentApi = generateMarkdownFile(methodDocsApi, 'CcuJackApiService Documentation');
+  await writeFile(markdownFileContentApi, './projects/ngx-ccu-jack-client/documentation-ccu-jack-api.md');
+
+  const methodDocsMqtt = await getMethodDocumentations(
+    './projects/ngx-ccu-jack-client/src/lib/mqtt-service/ccu-jack-mqtt.service.ts'
+  );
+  const markdownFileContentMqtt = generateMarkdownFile(methodDocsMqtt, 'CcuJackMqttService Documentation');
+  await writeFile(markdownFileContentMqtt, './projects/ngx-ccu-jack-client/documentation-ccu-jack-mqtt.md');
 };
 
 main();
