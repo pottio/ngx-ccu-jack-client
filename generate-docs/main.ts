@@ -7,6 +7,7 @@ interface MethodParam {
 }
 
 interface MethodDocumentation {
+  title: string;
   head: string;
   description: string;
   returns?: string;
@@ -43,7 +44,15 @@ const getMethodDocumentations = async (filePath: string): Promise<MethodDocument
     const docSplit = doc.split('\n') ?? [];
     const description = docSplit[1].replace('*', '').trim();
 
+    const titleIndex =
+      methodHead.indexOf('<') < 0
+        ? methodHead.indexOf('(')
+        : methodHead.indexOf('<') < methodHead.indexOf('(')
+        ? methodHead.indexOf('<')
+        : methodHead.indexOf('(');
+
     const methodDoc: MethodDocumentation = {
+      title: methodHead.substring(0, titleIndex),
       head: methodHead,
       description: description,
       params: []
@@ -99,9 +108,10 @@ const getMethodDocumentations = async (filePath: string): Promise<MethodDocument
 const generateMarkdownFile = (docs: MethodDocumentation[], pageTitle: string): string => {
   let result = `# ${pageTitle}\n\n`;
   docs.forEach((doc) => {
-    result += `###### ${doc.head}\n${doc.description}\n\n`;
+    result += `### ${doc.title}\n`;
+    result += '```\n' + doc.head + '\n```\n\n' + doc.description + '\n\n';
     if (doc.remarks) {
-      result += `*${doc.remarks}*\n`;
+      result += `- *${doc.remarks}*\n`;
     }
     if (doc.typeParam) {
       result += `- **Type Parameter:** ${doc.typeParam}\n`;
@@ -117,6 +127,7 @@ const generateMarkdownFile = (docs: MethodDocumentation[], pageTitle: string): s
     }
     result += '\n';
   });
+  result += '[Back to the ngx-ccu-jack-client documentation](README.md)';
   return result;
 };
 
