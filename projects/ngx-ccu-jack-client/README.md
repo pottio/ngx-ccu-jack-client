@@ -7,24 +7,25 @@ This client offers the possibility to integrate a <a href="https://github.com/md
 </p>
 
 <p align="center">
-Badges insert here
+< badges >
 </p>
 
 <br/>
 
-link to sample app
-
 **Table of contents**
+
 - [Requirements & Compatibility](#requirements--compatibility)
 - [Getting Started](#getting-started)
 - [Documentation](#documentation)
   - [API](#api)
   - [MQTT](#mqtt)
+  - [Sample Implementation](#sample-implementation)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 - [Dependencies](#dependencies)
 
 ## Requirements & Compatibility
+
 To connect `ngx-ccu-jack-client` with a backend a [CCU-Jack](https://github.com/mdzio/ccu-jack) server (installed as addon on a [CCU](https://homematic-ip.com/de/produkt/smart-home-zentrale-ccu3) or running as [Docker](https://www.docker.com/) container) is necessary. *Please make sure CCU-Jack and the CCU are [configured correctly](https://github.com/mdzio/ccu-jack#installation-als-add-on-auf-der-ccu).*
 
 | ngx-ccu-jack-client |    Angular    |  CCU-Jack      |
@@ -83,8 +84,6 @@ export class AppComponent {
 }
 ```
 
-
-
 ## Documentation
 
 ### API
@@ -94,20 +93,32 @@ The `CcuJackApiService` is used to access the rest interface of [CCU-Jack](https
 [See detailed CcuJackApiService documentation](documentation-ccu-jack-api.md)
 
 ### MQTT
+
 The `CcuJackMqttService` offers the possibility of a live connection of values of data points. In addition to that, values can be set and programs started.
 
 [See detailed CcuJackMqttService documentation](documentation-ccu-jack-mqtt.md)
 
+### Sample Implementation
+
+[ngx-ccu-jack-client sample implementation](https://github.com/pottio/ngx-ccu-jack-client/tree/main/projects/sample-app)
+
 ## Troubleshooting
 
->SSL + MQTT
+>I can not connect via ```MQTT``` due to SSL handshake error
 
->Cors
+In case of a self signed certificate make sure that your client has installed your root ca of the self signed certificate in the trusted root certificate store. In addition to that your self signed certificate should have the version 3 with subject alternative name if you access the CCU via IP and/or hostname. Finally your self signed certificate (and the private key) must be configured in the CCU and the CCU-Jack addon. See also [CCU-Jack TLS documentation](https://github.com/mdzio/ccu-jack#sicherer-zugriff-%C3%BCber-tls) for details.
+
+>I can not get data via ```API``` due to CORS errors
+
+It is important to use minimum the version 2.0.26 of CCU-Jack. Make sure CCU-Jack is [configured correctly](https://github.com/mdzio/ccu-jack#installation-als-add-on-auf-der-ccu). See also [CCU-Jack CORS documentation](https://github.com/mdzio/ccu-jack#cross-origin-resource-sharing-cors) for details.
+
 ## License
+
+[MIT](../../LICENSE)
 
 ## Dependencies
 
-- [@angular/common](https://github.com/angular/angular/blob/master/LICENSE)
-- [@angular/core](https://github.com/angular/angular/blob/master/LICENSE)
-- [ngx-mqtt](https://github.com/sclausen/ngx-mqtt/blob/master/LICENSE)
-- [tslib](https://github.com/microsoft/tslib/blob/main/LICENSE.txt)
+- [@angular/common](https://github.com/angular/angular)
+- [@angular/core](https://github.com/angular/angular)
+- [ngx-mqtt](https://github.com/sclausen/ngx-mqtt)
+- [tslib](https://github.com/microsoft/tslib)
