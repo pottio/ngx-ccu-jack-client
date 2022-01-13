@@ -99,7 +99,7 @@ const getMethodDocumentations = async (filePath: string): Promise<MethodDocument
 const generateMarkdownFile = (docs: MethodDocumentation[], pageTitle: string): string => {
   let result = `# ${pageTitle}\n\n`;
   docs.forEach((doc) => {
-    result += `## ${doc.head}\n${doc.description}\n\n`;
+    result += `###### ${doc.head}\n${doc.description}\n\n`;
     if (doc.remarks) {
       result += `*${doc.remarks}*\n`;
     }
