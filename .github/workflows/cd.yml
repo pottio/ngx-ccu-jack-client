@@ -1,0 +1,63 @@
+
+name: Create release and deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [ closed ]
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build artifacts
+        path: dist/ngx-ccu-jack-client/
+        
+  test:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+   
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run test
+    - uses: actions/upload-artifact@v2
+      with:
+        name: test artifacts
+        path: dist/reports/
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/download-artifact@v2
+        with:
+          name: build artifacts
+          path: dist/ngx-ccu-jack-client
+      - run: cd dist/ngx-ccu-jack-client
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
