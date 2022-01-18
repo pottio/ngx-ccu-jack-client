@@ -4,7 +4,7 @@
 name: CI
 
 on: [ push, pull_request ]
-
+      
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -59,10 +59,6 @@ jobs:
         node-version: '14'
     - name: Install Angular
       run: npm install -g @angular/cli
-    - uses: actions/download-artifact@v2
-      with:
-        name: download build artifacts
-        path: dist/ngx-ccu-jack-client
     - run: npm ci
     - run: npm run lint
     
