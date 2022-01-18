@@ -1,0 +1,85 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the libraray source code, run tests across different versions of node and lint the libraray source code. In addition the sample app source code will be built.
+
+name: CI
+
+on: [push, pull_request]
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build artifacts
+        path: dist/ngx-ccu-jack-client/
+        
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [14.x, 16.x]
+ 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run test
+  
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run lint
+    
+  build-sample:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: true
+      
+    needs: build
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - uses: actions/download-artifact@v2
+      with:
+        name: build artifacts
+        path: dist/ngx-ccu-jack-client
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run build-sample
+   
