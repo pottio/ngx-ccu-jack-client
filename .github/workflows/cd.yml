@@ -3,7 +3,7 @@ name: Create release and deploy
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 
 jobs:
   set_version:
@@ -13,10 +13,12 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 16
+    - id: get_version
+      uses: battila7/get-version-action@v2.2.1
     - name: Navigate to library
       run: cd ./projects/ngx-ccu-jack-client/
     - name: Bumb version
-      run: npm version ${{ github.ref }}
+      run: npm version ${{ steps.get_version.outputs.version-without-v }}
     
   build:
     needs: set_version
@@ -74,6 +76,8 @@ jobs:
     needs: [build, test]
     runs-on: ubunut-latest
     steps:
+    - id: get_version
+      uses: battila7/get-version-action@v2.2.1
     - name: Download build artifacts
       uses: actions/download-artifact@v2
       with:
@@ -94,13 +98,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+        tag_name: ${{ steps.get_version.outputs.version }}
+        release_name: ${{ steps.get_version.outputs.version }}
         body: |
-            Install this version of `ngx-ccu-jack-client` from npm:
+            Install this ${{ steps.get_version.outputs.version }} of `ngx-ccu-jack-client` from npm:
 
             ``` bash
-            npm install ngx-ccu-jack-client@${{ github.ref }} --save
+            npm install ngx-ccu-jack-client@${{ steps.get_version.outputs.version-without-v }} --save
             ```
             
         draft: false
