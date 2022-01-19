@@ -59,7 +59,7 @@ jobs:
       - name: publish to npm
         run: |
           ls -l
-          cd ngx-ccu-jack-client
+          cd dist/ngx-ccu-jack-client
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
