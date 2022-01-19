@@ -7,7 +7,7 @@ This libraray offers the possibility to integrate a <a href="https://github.com/
 </p>
 
 <p align="center">
-![npm](https://img.shields.io/npm/v/ngx-ccu-jack-client)
+ Badges
 </p>
 
 <br/>
