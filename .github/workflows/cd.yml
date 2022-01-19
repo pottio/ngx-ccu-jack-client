@@ -50,7 +50,8 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: build artifacts
-          path: dist/ngx-ccu-jack-client
+          path: /
+      - run: ls -l
       - run: cd dist/ngx-ccu-jack-client
       - run: npm publish
         env:
