@@ -1,20 +1,19 @@
 {
-    "name": "ngx-ccu-jack-client",
-    "version": "0.0.1",
-    "description": "An angular api and mqtt client for the ccu addon ccu-jack",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/pottio/ngx-ccu-jack-client.git"
-    },
-    "license": "MIT",
-    "author": "pottio (https://github.com/pottio)",
-    "peerDependencies": {
-      "@angular/common": "^13.0.0",
-      "@angular/core": "^13.0.0",
-      "ngx-mqtt": "^9.0.5"
-    },
-    "dependencies": {
-      "tslib": "^2.3.0"
-    }
+  "name": "ngx-ccu-jack-client",
+  "version": "0.1.0",
+  "description": "An angular api and mqtt client for the ccu addon ccu-jack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pottio/ngx-ccu-jack-client.git"
+  },
+  "license": "MIT",
+  "author": "pottio (https://github.com/pottio)",
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "ngx-mqtt": "^9.0.5"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
-  
+}
