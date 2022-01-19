@@ -54,11 +54,13 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: build artifacts
-          path: dist/ngx-ccu-jack-client
-      - run: ls -l
+          path: ngx-ccu-jack-client.zip
+      - name: unzip artifact for deployment
+        run: unzip ngx-ccu-jack-client.zip
       - name: publish to npm
         run: |
-          cd dist/ngx-ccu-jack-client
+          ls -l
+          cd ngx-ccu-jack-client
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -102,7 +104,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./ngx-ccu-jack-client.zip
+        asset_path: ngx-ccu-jack-client.zip
         asset_name: ngx-ccu-jack-client.zip
         asset_content_type: application/zip
     - name: Upload test artifacts to release
@@ -111,7 +113,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./test-and-code-coverage-reports.zip
+        asset_path: test-and-code-coverage-reports.zip
         asset_name: test-and-code-coverage-reports.zip
         asset_content_type: application/zip
 
