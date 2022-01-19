@@ -52,8 +52,10 @@ jobs:
           name: build artifacts
           path: dist/ngx-ccu-jack-client
       - run: ls -l
-      - run: cd dist/ngx-ccu-jack-client
-      - run: npm publish
+      - name: publish to npm
+        run: |
+          cd dist/ngx-ccu-jack-client
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
     
@@ -69,14 +71,14 @@ jobs:
         name: build artifacts
         path: dist/ngx-ccu-jack-client
     - name: ZIP build artifacts
-      run: 7z a -tzip /ngx-ccu-jack-client.zip dist/ngx-ccu-jack-client/*
+      run: zip -r /ngx-ccu-jack-client.zip dist/ngx-ccu-jack-client/
     - name: Download test artifacts
       uses: actions/download-artifact@v2
       with:
         name: test artifacts
         path: dist/reports
     - name: ZIP test artifacts
-      run: 7z a -tzip /test-and-code-coverage-reports.zip dist/reports/*
+      run: zip -r /test-and-code-coverage-reports.zip dist/reports/
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
