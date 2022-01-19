@@ -50,7 +50,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: build artifacts
-          path: /
+          path: dist/ngx-ccu-jack-client
       - run: ls -l
       - run: cd dist/ngx-ccu-jack-client
       - run: npm publish
@@ -59,7 +59,7 @@ jobs:
     
   create_release:
     needs: [build, test]
-    runs-on: ubunut-latest
+    runs-on: ubuntu-latest
     steps:
     - id: get_version
       uses: battila7/get-version-action@v2.2.1
