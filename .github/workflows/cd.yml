@@ -18,7 +18,7 @@ jobs:
     - run: npm ci
     - run: npm run build
     - name: ZIP build artifacts
-      run: zip -r /ngx-ccu-jack-client.zip dist/ngx-ccu-jack-client/
+      run: zip ngx-ccu-jack-client.zip ./dist/ngx-ccu-jack-client/* -r
     - uses: actions/upload-artifact@v2
       with:
         name: build artifacts
@@ -36,7 +36,7 @@ jobs:
     - run: npm ci
     - run: npm run test
     - name: ZIP test artifacts
-      run: zip -r /test-and-code-coverage-reports.zip dist/reports/
+      run: zip test-and-code-coverage-reports.zip ./dist/reports/* -r
     - uses: actions/upload-artifact@v2
       with:
         name: test artifacts
