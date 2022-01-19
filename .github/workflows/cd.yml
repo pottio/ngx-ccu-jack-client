@@ -87,7 +87,7 @@ jobs:
         tag_name: ${{ steps.get_version.outputs.version }}
         release_name: ${{ steps.get_version.outputs.version }}
         body: |
-            Install this ${{ steps.get_version.outputs.version }} of `ngx-ccu-jack-client` from npm:
+            Install ${{ steps.get_version.outputs.version }} of `ngx-ccu-jack-client` from npm:
 
             ``` bash
             npm install ngx-ccu-jack-client@${{ steps.get_version.outputs.version-without-v }} --save
