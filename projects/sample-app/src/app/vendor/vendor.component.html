@@ -1,0 +1,6 @@
+<mat-toolbar>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-raised-button (click)="loadData()">Vendor Information</button>
+  </mat-toolbar>
+  <app-property-view [ccuObject]="vendor"></app-property-view>
+  <app-property-view [ccuObject]="vendorDetails"></app-property-view>

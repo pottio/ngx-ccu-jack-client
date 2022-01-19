@@ -1,0 +1,5 @@
+<mat-toolbar>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-raised-button (click)="loadData()">Devices</button>
+</mat-toolbar>
+<app-ref-table title="Devices" [data]="references" [displayedColumns]="['title', 'deviceAddress']"></app-ref-table>

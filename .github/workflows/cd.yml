@@ -1,0 +1,116 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run build
+    - name: ZIP build artifacts
+      run: zip ngx-ccu-jack-client.zip ./dist/ngx-ccu-jack-client/* -r
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build artifacts
+        path: ngx-ccu-jack-client.zip
+        
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run test
+    - name: ZIP test artifacts
+      run: zip test-and-code-coverage-reports.zip ./dist/reports/* -r
+    - uses: actions/upload-artifact@v2
+      with:
+        name: test artifacts
+        path: test-and-code-coverage-reports.zip
+
+  publish_npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/download-artifact@v2
+        with:
+          name: build artifacts
+      - name: unzip artifact for deployment
+        run: unzip ngx-ccu-jack-client.zip
+      - name: publish to npm
+        run: |
+          ls -l
+          cd dist/ngx-ccu-jack-client
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    
+  create_release:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+    - id: get_version
+      uses: battila7/get-version-action@v2.2.1
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build artifacts
+    - name: Download test artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: test artifacts
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_version.outputs.version }}
+        release_name: ${{ steps.get_version.outputs.version }}
+        body: |
+            Install ${{ steps.get_version.outputs.version }} of `ngx-ccu-jack-client` from npm:
+
+            ``` bash
+            npm install ngx-ccu-jack-client@${{ steps.get_version.outputs.version-without-v }} --save
+            ```
+            
+        draft: false
+        prerelease: false
+    - name: Upload build artifacts to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ngx-ccu-jack-client.zip
+        asset_name: ngx-ccu-jack-client.zip
+        asset_content_type: application/zip
+    - name: Upload test artifacts to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: test-and-code-coverage-reports.zip
+        asset_name: test-and-code-coverage-reports.zip
+        asset_content_type: application/zip
+

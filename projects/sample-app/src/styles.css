@@ -1,0 +1,45 @@
+html, body { 
+    height: 100%;
+}
+body { 
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+th.mat-sort-header-sorted {
+    color: black;
+}
+th {
+    text-align: left;
+}
+mat-form-field {
+    width: 100%;
+}
+mat-chip {
+    cursor: pointer !important;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.container {
+    padding: 10px;
+}
+.error-card {
+    background: rgb(223, 146, 133);
+}
+.list {
+    width: 100%;
+}
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+}
+.spacer {
+    flex: 1 1 auto;
+}

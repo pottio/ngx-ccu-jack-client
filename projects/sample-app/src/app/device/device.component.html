@@ -1,0 +1,8 @@
+
+<mat-toolbar>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/device">Devices</button>
+    <button mat-raised-button (click)="loadData()">Device {{deviceAddress}}</button>
+</mat-toolbar>
+<app-property-view [ccuObject]="device"></app-property-view>
+<app-ref-table title="Channels" [data]="references" [displayedColumns]="['title', 'deviceAddress', 'channelAddress']"></app-ref-table>
