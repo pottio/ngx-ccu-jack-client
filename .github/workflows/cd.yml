@@ -23,7 +23,6 @@ jobs:
         path: dist/ngx-ccu-jack-client/
         
   test:
-    needs: set_version
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
