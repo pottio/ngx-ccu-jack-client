@@ -1,6 +1,6 @@
 {
   "name": "ngx-ccu-jack-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An angular api and mqtt client for the ccu addon ccu-jack",
   "repository": {
     "type": "git",
