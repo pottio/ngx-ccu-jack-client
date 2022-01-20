@@ -1,3 +1,5 @@
+# This workflow will publish the library to npm and create a new release on github
+
 name: CD
 
 on:
@@ -113,4 +115,3 @@ jobs:
         asset_path: test-and-code-coverage-reports.zip
         asset_name: test-and-code-coverage-reports.zip
         asset_content_type: application/zip
-

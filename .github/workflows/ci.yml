@@ -1,23 +1,19 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the libraray source code, run tests across different versions of node and lint the libraray source code. In addition the sample app source code will be built.
+# This workflow will do a clean install of node dependencies, cache/restore them, build the library source code, run tests across different versions of node and lint the library source code. In addition the sample app source code will be built.
 
 name: CI
 
 on:
   push:
     branches:
-      - main
+      - master
       - 'releases/**'
   pull_request:
     branches:
-      - main
+      - master
       
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -34,12 +30,10 @@ jobs:
         
   test:
     runs-on: ubuntu-latest
-    
     strategy:
       fail-fast: true
       matrix:
         node-version: [14.x, 16.x]
- 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -54,10 +48,6 @@ jobs:
   
   lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -69,13 +59,8 @@ jobs:
     - run: npm run lint
     
   build-sample:
-    runs-on: ubuntu-latest
-    
-    strategy:
-      fail-fast: true
-      
     needs: build
-    
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -89,4 +74,3 @@ jobs:
       run: npm install -g @angular/cli
     - run: npm ci
     - run: npm run build-sample
-   

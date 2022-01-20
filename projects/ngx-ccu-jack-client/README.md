@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-This libraray offers the possibility to integrate a <a href="https://github.com/mdzio/ccu-jack">CCU-Jack</a> server quickly and easily into an <a href="https://angular.io/">Angular</a> application.
+This library offers the possibility to integrate a <a href="https://github.com/mdzio/ccu-jack">CCU-Jack</a> server quickly and easily into an <a href="https://angular.io/">Angular</a> application.
 </p>
 
 <p align="center">
