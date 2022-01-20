@@ -7,11 +7,12 @@ This library offers the possibility to integrate a <a href="https://github.com/m
 </p>
 
 <p align="center">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CD?label=Build%20%26%20Test%20%28CI%29">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CI?label=Deploy%20%28CD%29">
-  <img alt="npm" src="https://img.shields.io/npm/v/ngx-ccu-jack-client">
-  <img alt="GitHub" src="https://img.shields.io/github/license/pottio/ngx-ccu-jack-client">
-
+  <a href="https://github.com/pottio/ngx-ccu-jack-client/actions/workflows/cd.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CD?label=build%20%28CI%29"></a>
+  <a href="https://github.com/pottio/ngx-ccu-jack-client/actions/workflows/ci.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CI?label=deploy%20%28CD%29"></a>
+  <a href="https://pottio.testspace.com/spaces/161106/"><img alt="Testspace tests" src="https://img.shields.io/testspace/tests/pottio/pottio:ngx-ccu-jack-client/master"></a>
+  <a href="https://pottio.testspace.com/spaces/161106/current/Code%20Coverage?utm_campaign=badge&utm_medium=referral&utm_source=coverage"><img alt="Space Metric" src="https://pottio.testspace.com/spaces/161106/metrics/213108/badge?token=2c4e76925d37b20e82082a8d87a5dc5a1fa49049" /></a>
+  <a href="https://www.npmjs.com/package/ngx-ccu-jack-client"><img alt="npm" src="https://img.shields.io/npm/v/ngx-ccu-jack-client"></a>
+  <a href="https://github.com/pottio/ngx-ccu-jack-client/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/pottio/ngx-ccu-jack-client"></a>
 </p>
 
 <br/>
