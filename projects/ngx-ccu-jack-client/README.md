@@ -7,7 +7,11 @@ This library offers the possibility to integrate a <a href="https://github.com/m
 </p>
 
 <p align="center">
- Badges
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CD?label=Build%20%26%20Test%20%28CI%29">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pottio/ngx-ccu-jack-client/CI?label=Deploy%20%28CD%29">
+  <img alt="npm" src="https://img.shields.io/npm/v/ngx-ccu-jack-client">
+  <img alt="GitHub" src="https://img.shields.io/github/license/pottio/ngx-ccu-jack-client">
+
 </p>
 
 <br/>
@@ -90,17 +94,17 @@ export class AppComponent {
 
 The `CcuJackApiService` is used to access the rest interface of [CCU-Jack](https://github.com/mdzio/ccu-jack). Master data of devices, rooms, functions, system variables and programs can be requested via this way. It is also possible to start a program and access and set the value of each data point. However, the `CcuJackMqttService` should be used to display the values of data points, as the values are immediately updated via this way if they are changed in the CCU.
 
-[See detailed CcuJackApiService documentation](documentation-ccu-jack-api.md)
+[See detailed CcuJackApiService documentation](https://github.com/pottio/ngx-ccu-jack-client/blob/master/projects/ngx-ccu-jack-client/documentation-ccu-jack-api.md)
 
 ### MQTT
 
 The `CcuJackMqttService` offers the possibility of a live connection of values of data points. In addition to that, values can be set and programs started.
 
-[See detailed CcuJackMqttService documentation](documentation-ccu-jack-mqtt.md)
+[See detailed CcuJackMqttService documentation](https://github.com/pottio/ngx-ccu-jack-client/blob/master/projects/ngx-ccu-jack-client/documentation-ccu-jack-mqtt.md)
 
 ### Sample Implementation
 
-[ngx-ccu-jack-client sample implementation](https://github.com/pottio/ngx-ccu-jack-client/tree/main/projects/sample-app)
+[ngx-ccu-jack-client sample implementation](https://github.com/pottio/ngx-ccu-jack-client/tree/master/projects/sample-app)
 
 ## Troubleshooting
 

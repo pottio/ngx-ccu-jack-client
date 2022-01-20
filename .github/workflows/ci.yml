@@ -36,6 +36,9 @@ jobs:
         node-version: [14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
+    - uses: testspace-com/setup-testspace@v1
+      with:
+        domain: pottio
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -45,6 +48,10 @@ jobs:
       run: npm install -g @angular/cli
     - run: npm ci
     - run: npm run test
+    - name: Push result to Testspace server
+      run: |
+        testspace ./dist/reports/*.xml
+      if: always()
   
   lint:
     runs-on: ubuntu-latest

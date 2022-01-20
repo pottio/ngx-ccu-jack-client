@@ -17,7 +17,8 @@ module.exports = {
     ['./node_modules/jest-html-reporter', {
       'pageTitle': "Test Report",
       'outputPath': "<rootDir>/dist/reports/test-results.html"
-    }]
+    }],
+    [ 'jest-junit', { outputDirectory: "<rootDir>/dist/reports/" } ]
   ],
   coverageDirectory: "<rootDir>/dist/reports",
 };
