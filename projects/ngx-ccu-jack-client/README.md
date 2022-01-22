@@ -12,6 +12,7 @@ This library offers the possibility to integrate a <a href="https://github.com/m
   <a href="https://pottio.testspace.com/spaces/161106/"><img alt="Testspace tests" src="https://img.shields.io/testspace/tests/pottio/pottio:ngx-ccu-jack-client/master"></a>
   <a href="https://pottio.testspace.com/spaces/161106/current/Code%20Coverage?utm_campaign=badge&utm_medium=referral&utm_source=coverage"><img alt="Space Metric" src="https://pottio.testspace.com/spaces/161106/metrics/213108/badge?token=2c4e76925d37b20e82082a8d87a5dc5a1fa49049" /></a>
   <a href="https://www.npmjs.com/package/ngx-ccu-jack-client"><img alt="npm" src="https://img.shields.io/npm/v/ngx-ccu-jack-client"></a>
+  <a href="https://www.npmjs.com/package/ngx-ccu-jack-client"><img alt="npm @next" src="https://img.shields.io/npm/v/ngx-ccu-jack-client/next"></a>
   <a href="https://github.com/pottio/ngx-ccu-jack-client/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/pottio/ngx-ccu-jack-client"></a>
 </p>
 
@@ -33,9 +34,9 @@ This library offers the possibility to integrate a <a href="https://github.com/m
 
 To connect `ngx-ccu-jack-client` with a backend a [CCU-Jack](https://github.com/mdzio/ccu-jack) server (installed as addon on a [CCU](https://homematic-ip.com/de/produkt/smart-home-zentrale-ccu3) or running as [Docker](https://www.docker.com/) container) is necessary. *Please make sure CCU-Jack and the CCU are [configured correctly](https://github.com/mdzio/ccu-jack#installation-als-add-on-auf-der-ccu).*
 
-| ngx-ccu-jack-client |    Angular    |  CCU-Jack      |
-| ------------------- | ------------- | -------------- |
-| 1.0.x               | 13.x.x        | >= 2.0.26      |
+| ngx-ccu-jack-client | angular       | ngx-mqtt       | rxjs          |  CCU-Jack      |
+| ------------------- | ------------- | -------------- | ------------- | -------------- |
+| 1.0.x               | 13.x.x        | 9.0.x          | >= 7.4.0      | >= 2.0.26      |
 
 ## Getting Started
 
@@ -43,6 +44,13 @@ Install `ngx-ccu-jack-client` from npm:
 
 ``` bash
 npm install ngx-ccu-jack-client --save
+```
+
+Install needed peer dependencies. For compatible versions see console output after install of ```ngx-ccu-jack-client``` or see [Requirements & Compatibility](#requirements--compatibility).
+
+``` bash
+npm install ngx-mqtt --save
+npm install rxjs --save
 ```
 
 Import `NgxCcuJackClientModule` into `app.module.ts` and add your configuration:
