@@ -53,8 +53,6 @@ jobs:
         run: |
           ls -l
           cd dist/ngx-ccu-jack-client
-          npm publish
+          npm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        with: 
-          tag: 'next'
