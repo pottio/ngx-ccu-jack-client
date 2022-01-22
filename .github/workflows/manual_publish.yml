@@ -1,0 +1,60 @@
+# This workflow will publish the library to npm at next channel
+
+name: Manual publish @next
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run build
+    - name: ZIP build artifacts
+      run: zip ngx-ccu-jack-client.zip ./dist/ngx-ccu-jack-client/* -r
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build artifacts
+        path: ngx-ccu-jack-client.zip
+        
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Angular
+      run: npm install -g @angular/cli
+    - run: npm ci
+    - run: npm run test
+
+  publish_npm:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/download-artifact@v2
+        with:
+          name: build artifacts
+      - name: unzip artifact for deployment
+        run: unzip ngx-ccu-jack-client.zip
+      - name: publish to npm
+        run: |
+          ls -l
+          cd dist/ngx-ccu-jack-client
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        with: 
+          tag: 'next'

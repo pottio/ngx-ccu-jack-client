@@ -1,6 +1,6 @@
 # This workflow will publish the library to npm and create a new release on github
 
-name: CD
+name: CD publish @latest
 
 on:
   push:
