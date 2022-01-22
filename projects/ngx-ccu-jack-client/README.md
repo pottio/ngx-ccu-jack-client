@@ -117,6 +117,10 @@ The `CcuJackMqttService` offers the possibility of a live connection of values o
 
 ## Troubleshooting
 
+>I can not build due to console error: '*Cannot find module 'ngx-mqtt' or its corresponding type declarations.*'
+
+Make sure you have installed ngx-mqtt and other needed peer dependencies. See [Requirements & Compatibility](#requirements--compatibility) and [Getting Started](#getting-started) for details.
+
 >I can not connect via ```MQTT``` due to SSL handshake error
 
 In case of a self signed certificate make sure that your client has installed your root ca of the self signed certificate in the trusted root certificate store. In addition to that your self signed certificate should have the version 3 with subject alternative name if you access the CCU via IP and/or hostname. Finally your self signed certificate (and the private key) must be configured in the CCU and the CCU-Jack addon. See also [CCU-Jack TLS documentation](https://github.com/mdzio/ccu-jack#sicherer-zugriff-%C3%BCber-tls) for details.
